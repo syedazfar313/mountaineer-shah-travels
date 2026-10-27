@@ -1,0 +1,29 @@
+name: mountaineer_shah_travels
+description: Mountaineer Shah Travels - Flutter Web frontend (Phase 1, mock data only).
+publish_to: 'none'
+version: 0.2.0+1
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+  # State management and dependency injection (swap repositories in Phase 2).
+  flutter_riverpod: ^2.5.1
+  # Declarative, URL-based routing for Flutter Web.
+  go_router: ^14.2.0
+  # Brand typefaces (Fraunces for display, Source Sans 3 for body).
+  google_fonts: ^6.2.1
+  # Opens WhatsApp and social links in a new tab.
+  url_launcher: ^6.3.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
