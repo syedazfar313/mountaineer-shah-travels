@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../features/destinations/presentation/destinations_page.dart';
 import '../../features/home/presentation/home_page.dart';
 import '../../features/showcase/presentation/component_showcase_page.dart';
 import '../../shared/widgets/not_found_page.dart';
@@ -11,7 +12,11 @@ import 'app_routes.dart';
 /// Pages that exist in the plan but are built in a later milestone. Each is
 /// replaced by its real route when that milestone lands.
 const List<({String path, String title, int milestone})> _plannedPages = [
-  (path: AppRoutes.destinations, title: 'Destinations', milestone: 5),
+  (
+    path: AppRoutes.destinationDetails,
+    title: 'Destination details',
+    milestone: 5,
+  ),
   (path: AppRoutes.packages, title: 'Tour Packages', milestone: 6),
   (path: AppRoutes.login, title: 'Log in', milestone: 8),
   (path: AppRoutes.register, title: 'Create account', milestone: 8),
@@ -50,6 +55,20 @@ final routerProvider = Provider<GoRouter>((ref) {
           path: AppRoutes.components,
           builder: (context, state) => const ComponentShowcasePage(),
         ),
+      GoRoute(
+        path: AppRoutes.destinations,
+        name: 'destinations',
+        // Links such as /destinations?destination=hunza open that
+        // destination's details instead of the list.
+        redirect: (context, state) {
+          final id = state.uri.queryParameters['destination'];
+          if (id != null && id.isNotEmpty) {
+            return '${AppRoutes.destinations}/$id';
+          }
+          return null;
+        },
+        builder: (context, state) => const DestinationsPage(),
+      ),
       for (final page in _plannedPages)
         GoRoute(
           path: page.path,

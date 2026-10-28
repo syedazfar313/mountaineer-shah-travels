@@ -7,6 +7,8 @@ import 'package:mountaineer_shah_travels/shared/widgets/destination_card.dart';
 import 'package:mountaineer_shah_travels/shared/widgets/package_card.dart';
 import 'package:mountaineer_shah_travels/shared/widgets/star_rating.dart';
 
+const _destinationsTitle = 'Explore our destinations';
+
 Future<void> _pumpHome(WidgetTester tester) async {
   // Very tall viewport so the whole homepage is on screen without scrolling.
   tester.view.physicalSize = const Size(1000, 20000);
@@ -35,10 +37,14 @@ void main() {
     expect(find.text('Browse Tour Packages'), findsOneWidget);
   });
 
-  testWidgets('Explore Destinations opens the destinations route',
+  testWidgets('Explore Destinations opens the destinations page',
       (tester) async {
     await _pumpHome(tester);
-    await _tapExpect(tester, find.text('Explore Destinations'), 'Milestone 5');
+    await _tapExpect(
+      tester,
+      find.text('Explore Destinations'),
+      _destinationsTitle,
+    );
   });
 
   testWidgets('Browse Tour Packages opens the packages route', (tester) async {
@@ -46,13 +52,13 @@ void main() {
     await _tapExpect(tester, find.text('Browse Tour Packages'), 'Milestone 6');
   });
 
-  testWidgets('search in destinations mode goes to destinations',
+  testWidgets('search in destinations mode opens the destinations page',
       (tester) async {
     await _pumpHome(tester);
     await _tapExpect(
       tester,
       find.widgetWithText(ElevatedButton, 'Search'),
-      'Milestone 5',
+      _destinationsTitle,
     );
   });
 
@@ -111,7 +117,7 @@ void main() {
     expect(find.textContaining('not real customer reviews'), findsOneWidget);
   });
 
-  testWidgets('tapping a featured destination opens the destinations route',
+  testWidgets('tapping a featured destination opens its details route',
       (tester) async {
     await _pumpHome(tester);
 
@@ -122,7 +128,7 @@ void main() {
     await _tapExpect(tester, hunza.first, 'Milestone 5');
   });
 
-  testWidgets('tapping a Pakistan showcase card opens the destinations route',
+  testWidgets('tapping a Pakistan showcase card opens its details route',
       (tester) async {
     await _pumpHome(tester);
 
@@ -143,9 +149,9 @@ void main() {
     );
   });
 
-  testWidgets('All destinations button opens the destinations route',
+  testWidgets('All destinations button opens the destinations page',
       (tester) async {
     await _pumpHome(tester);
-    await _tapExpect(tester, find.text('All destinations'), 'Milestone 5');
+    await _tapExpect(tester, find.text('All destinations'), _destinationsTitle);
   });
 }

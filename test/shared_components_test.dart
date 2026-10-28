@@ -114,11 +114,11 @@ void main() {
 
       await tester.tap(find.descendant(
         of: find.byType(AppHeader),
-        matching: find.text('Destinations'),
+        matching: find.text('Packages'),
       ));
       await tester.pumpAndSettle();
 
-      expect(find.textContaining('Milestone 5'), findsOneWidget);
+      expect(find.textContaining('Milestone 6'), findsOneWidget);
     });
 
     testWidgets('narrow screen opens the menu drawer', (tester) async {
